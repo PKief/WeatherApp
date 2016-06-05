@@ -9,23 +9,21 @@ $(function () {
 //Listeners
 $(function () {
     $('#addLocationButton').on('click', function (e) {
-        addLocation('Karlsruhe', 'BadenWü', 30);
+        addLocation($('#city').val());
     });
 });
 
-function addLocation(city, region, temp) {    
-    
-
+function addLocation(city) {                
     var card = `
             <div class="col l4">
                 <div class="card" id="`+ city + `">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <span class="temperature">`+ temperature + ` F</span>
+                        <span class="temperature"></span>
                         <img class="activator locationImage" src="img/rainy.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">`+ city + `<i class="material-icons right">more_vert</i></span>
-                        <p><a href="#">Test</a></p>
+                        <p><a href="#"></a></p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">`+ city + `<i class="material-icons right">close</i></span>
@@ -35,6 +33,9 @@ function addLocation(city, region, temp) {
             </div>`;
 
     $('#allFavourites .row').append(card);
+    
+    //update weatherinformation
+    getWeatherInformation(city);
 }
 
 function getWeatherInformation(city) {
@@ -43,12 +44,14 @@ function getWeatherInformation(city) {
         woeid: '',
         unit: 'c',
         success: function (weather) {
-            html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
-            html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
-            html += '<li class="currently">' + weather.currently + '</li>';
-            html += '<li>' + weather.wind.direction + ' ' + weather.wind.speed + ' ' + weather.units.speed + '</li></ul>';
+            // html = '<h2><i class="icon-' + weather.code + '"></i> ' + weather.temp + '&deg;' + weather.units.temp + '</h2>';
+            // html += '<ul><li>' + weather.city + ', ' + weather.region + '</li>';
+            // html += '<li class="currently">' + weather.currently + '</li>';
+            // html += '<li>' + weather.wind.direction + ' ' + weather.wind.speed + ' ' + weather.units.speed + '</li></ul>';
 
-            $("#weather").html(html);
+            // $("#weather").html(html);
+            
+            $('#'+city+' span.temperature').html(weather.temp + '° '+weather.units.temp);                                                
         },
         error: function (error) {
             $("#weather").html('<p>' + error + '</p>');
