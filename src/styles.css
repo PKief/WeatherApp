@@ -1,0 +1,28 @@
+body, html {
+  padding: 0;
+  margin: 0; }
+
+body {
+  background: url(../img/background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: #4091ab; }
+
+.mainnav {
+  background-color: #3e515a !important; }
+
+.card {
+  padding: 0 !important;
+  margin: 1rem 0rem 1rem 1rem !important; }
+  .card .temperature {
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    color: #fff;
+    font-size: 5rem;
+    z-index: 1; }
+
+nav .brand-logo {
+  margin-left: 1rem; }

@@ -1,0 +1,29 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "Weather App with Angular JS 2",
+  "main": "index.html",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PKief/WeatherApp.git"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "Philipp Kief",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PKief/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/PKief/WeatherApp#readme"
+}
