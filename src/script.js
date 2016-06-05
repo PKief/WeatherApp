@@ -1,15 +1,14 @@
 $(function () {
     $(".button-collapse").sideNav();
 
-    $('.modal-trigger').leanModal();
-    
-    getWeatherInformation('Hamburg');
+    $('.modal-trigger').leanModal();        
 });
 
 //Listeners
 $(function () {
     $('#addLocationButton').on('click', function (e) {
         addLocation($('#city').val());
+        $('#city').val('');
     });
 });
 
