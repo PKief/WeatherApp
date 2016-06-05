@@ -101,16 +101,16 @@ function getWeatherInformation(city) {
             // $("#weather").html(html);
 
             $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' span.temperature').html(weather.temp + '° ' + weather.units.temp);
-            $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' span.weatherStatus').html(weather.text);
+            $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' span.weatherStatus').html(weather.currently);
             $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' p.countryName').html(weather.country);
             // $('#' + city + ' a.externalLink').attr('href',weather.link);
 
             //get the current weather state
             if (weather.currently.toString().toLowerCase().indexOf('cloudy') != -1) {
                 $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' img.locationImage').attr('src', 'img/cloudy.jpg');
-            } else if (weather.currently.toString().toLowerCase().indexOf('sunny') != -1) {
+            } else if (weather.currently.toString().toLowerCase().indexOf('sun') != -1) {
                 $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' img.locationImage').attr('src', 'img/sunny.jpg');
-            } else if (weather.currently.toString().toLowerCase().indexOf('rainy') != -1) {
+            } else if (weather.currently.toString().toLowerCase().indexOf('rain') != -1 || weather.currently.toString().toLowerCase().indexOf('show') != -1) {
                 $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' img.locationImage').attr('src', 'img/rainy.jpg');
             } else if (weather.currently.toString().toLowerCase().indexOf('storm') != -1) {
                 $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' img.locationImage').attr('src', 'img/storm.jpg');
