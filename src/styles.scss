@@ -29,6 +29,14 @@ body{
         z-index: 1;
     }
     
+    .weatherStatus{
+        position: absolute;
+        z-index: 2;
+        color: white;
+        right: 1.4rem;
+        bottom: 1.6rem;
+    }
+    
     .card-image img {
         height: 14rem !important;
     }

@@ -22,6 +22,12 @@ body {
     color: #fff;
     font-size: 5rem;
     z-index: 1; }
+  .card .weatherStatus {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    right: 1.4rem;
+    bottom: 1.6rem; }
   .card .card-image img {
     height: 14rem !important; }
   .card .dropCard {
