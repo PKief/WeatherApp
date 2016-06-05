@@ -28,6 +28,24 @@ body{
         font-size: 5rem;
         z-index: 1;
     }
+    
+    .card-image img {
+        height: 14rem !important;
+    }
+    
+    .dropCard{
+        position: absolute;
+        z-index: 2;
+        color: white;
+        right: 1rem;
+        top: 1rem;
+        opacity: 0;
+        transition: opacity ease 1s;
+    }
+    
+    &:hover > .dropCard{
+        opacity: 1;
+    }
 }
 
 nav .brand-logo{

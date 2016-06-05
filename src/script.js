@@ -2,6 +2,16 @@ $(function () {
     $(".button-collapse").sideNav();
 
     $('.modal-trigger').leanModal();
+
+
+    //for each city in local storage add a card
+    var storedLocations = JSON.parse(localStorage.getItem("locations"));
+    if (storedLocations) {
+        storedLocations.forEach(function (location) {
+            addLocation(location);
+        }, this);
+    }
+
 });
 
 //Listeners
@@ -12,13 +22,20 @@ $(function () {
     });
 });
 
+$(function () {
+    $('.dropCard').on('click', function () {
+        alert('test');
+    });
+});
+
 function addLocation(city) {
     var card = `
             <div class="col l4">
                 <div class="card" id="`+ city + `">
+                    <a class="dropCard" href="#"><i class="material-icons">close</i></a>
                     <div class="card-image waves-effect waves-block waves-light">
                         <span class="temperature"></span>
-                        <img class="activator locationImage" src="img/rainy.jpg">
+                        <img class="activator locationImage" src="img/cloudy.jpg">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">`+ city + `<i class="material-icons right">more_vert</i></span>
@@ -31,10 +48,36 @@ function addLocation(city) {
                 </div>
             </div>`;
 
-    $('#allFavourites .row').append(card);
+    $('#allFavourites .row').append(card);    
+    
+    if (locationExistsInStorage(city) === false) {
+        var storedLocations = JSON.parse(localStorage.getItem("locations"));
+        if(!storedLocations){            
+            storedLocations = [];
+        }
+        storedLocations.push(city);
+        localStorage.setItem("locations", JSON.stringify(storedLocations));
+    }    
 
     //update weatherinformation
     getWeatherInformation(city);
+}
+
+function locationExistsInStorage(city) {
+    var storedLocations = JSON.parse(localStorage.getItem("locations"));
+    //checks if location is already saved in local storage
+    if(storedLocations){    
+        var foundOne = false;    
+        storedLocations.forEach(function (location) {
+            if (location.toLowerCase().indexOf(city.toLowerCase()) != -1) {
+                foundOne = true;                
+                return true;                
+            }
+        });
+        return foundOne;
+    }else{
+        return false;
+    }
 }
 
 function getWeatherInformation(city) {
@@ -54,15 +97,15 @@ function getWeatherInformation(city) {
 
             //get the current weather state
             if (weather.currently.toString().toLowerCase().indexOf('cloudy') != -1) {
-                $('#' + city + ' img.locationImage').attr('src','img/cloudy.jpg');
+                $('#' + city + ' img.locationImage').attr('src', 'img/cloudy.jpg');
             } else if (weather.currently.toString().toLowerCase().indexOf('sunny') != -1) {
-                $('#' + city + ' img.locationImage').attr('src','img/sunny.jpg');
+                $('#' + city + ' img.locationImage').attr('src', 'img/sunny.jpg');
             } else if (weather.currently.toString().toLowerCase().indexOf('rainy') != -1) {
-                $('#' + city + ' img.locationImage').attr('src','img/rainy.jpg');
+                $('#' + city + ' img.locationImage').attr('src', 'img/rainy.jpg');
             } else if (weather.currently.toString().toLowerCase().indexOf('storm') != -1) {
-                $('#' + city + ' img.locationImage').attr('src','img/storm.jpg');
-            } else{
-                $('#' + city + ' img.locationImage').attr('src','img/sunny.jpg');
+                $('#' + city + ' img.locationImage').attr('src', 'img/storm.jpg');
+            } else {
+                $('#' + city + ' img.locationImage').attr('src', 'img/sunny.jpg');
             }
         },
         error: function (error) {
