@@ -38,7 +38,7 @@ function addLocation(city) {
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">`+ city + `<i class="material-icons right">close</i></span>
                         <p class="countryName"></p>
-                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        <p class="weatherDescription"></p>
                     </div>
                 </div>
             </div>`;
@@ -102,8 +102,9 @@ function getWeatherInformation(city) {
 
             $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' span.temperature').html(weather.temp + '° ' + weather.units.temp);
             $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' span.weatherStatus').html(weather.currently);
-            $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' p.countryName').html(weather.country);
-            // $('#' + city + ' a.externalLink').attr('href',weather.link);
+            $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' p.countryName').html(weather.country + ' ('+ weather.region.trim() +')');
+            $('#' + city.replace(/\s+/g, '-').toLowerCase() + ' p.weatherDescription').html('Forecast: ' + weather.text);
+            // $('#' + city + ' a.externalLink').attr('href',weather.link);            
 
             //get the current weather state
             if (weather.currently.toString().toLowerCase().indexOf('cloudy') != -1) {
